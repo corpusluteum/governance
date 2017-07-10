@@ -26,7 +26,7 @@ public class Meetings implements Serializable{
 	@Id	
 	@Column(name="meeting_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-    private Long meetingId;
+    private Integer meetingId;
 	
 	@NotEmpty
 	@Column(name="meetings_name")
@@ -43,11 +43,11 @@ public class Meetings implements Serializable{
 	 @Fetch (FetchMode.SELECT)
      private List<Department> departments;
 
-	public Meetings(){
+	public Meetings(Integer i, String string, String string2){
 		meetingId=null;
 	}
 	
-	public Meetings(long id, String name, String description, String department){
+	public Meetings(Integer id, String name, String description, String department){
 		this.meetingId = id;
 		this.meetingName = name;
 		this.meetingDescription = description;
@@ -58,7 +58,7 @@ public class Meetings implements Serializable{
 		return meetingId;
 	}
 
-	public void setMeetingsId(long id) {
+	public void setMeetingsId(Integer id) {
 		this.meetingId = id;
 	}
 
