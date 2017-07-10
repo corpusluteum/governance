@@ -32,17 +32,17 @@ public class DepartmentController {
          this.departmentService = departmentServices;
     }
 	
-	@GetMapping("list/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Department> getDepartmentById(@PathVariable("id") Integer id) {
 		Department department = departmentService.getDepartmentById(id);
 		return new ResponseEntity<Department>(department, HttpStatus.OK);
 	}
-	@GetMapping("list")
+	@GetMapping("/")
 	public ResponseEntity<List<Department>> getAllDepartments() {
 		List<Department> list = departmentService.getAllDepartment();
 		return new ResponseEntity<List<Department>>(list, HttpStatus.OK);
 	}
-	@PostMapping("add")
+	@PostMapping("/")
 	public ResponseEntity<Void> addDepartment(@RequestBody Department department, UriComponentsBuilder builder) {
                 boolean flag = departmentService.addDepartment(department);
                 if (flag == false) {
@@ -52,12 +52,12 @@ public class DepartmentController {
                 headers.setLocation(builder.path("/department/{id}").buildAndExpand(department.getDepartmentId()).toUri());
                 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
-	@PutMapping("update")
+	@PutMapping("/")
 	public ResponseEntity<Department> updateDepartment(@RequestBody Department department) {
 		departmentService.updateDepartment(department);
 		return new ResponseEntity<Department>(department, HttpStatus.OK);
 	}
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteDepartment(@PathVariable("id") Integer id) {
 		departmentService.deleteDepartment(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

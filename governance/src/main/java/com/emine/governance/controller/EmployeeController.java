@@ -20,7 +20,7 @@ import com.emine.governance.models.Employee;
 import com.emine.governance.service.EmployeeServices;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("employee")
 public class EmployeeController {
 	
 	@Autowired
@@ -30,17 +30,17 @@ public class EmployeeController {
           this.employeeService = employeeServices;
      }
 	
-	@GetMapping("list/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Integer id) {
 		Employee employee = employeeService.getEmployeeById(id);
 		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 	}
-	@GetMapping("list")
+	@GetMapping("/")
 	public ResponseEntity<List<Employee>> getAllEmployees() {
 		List<Employee> list = employeeService.getAllEmployee();
 		return new ResponseEntity<List<Employee>>(list, HttpStatus.OK);
 	}
-	@PostMapping("add")
+	@PostMapping("/")
 	public ResponseEntity<Void> addEmployee(@RequestBody Employee employee, UriComponentsBuilder builder) {
                 boolean flag = employeeService.addEmployee(employee);
                 if (flag == false) {
@@ -50,12 +50,12 @@ public class EmployeeController {
                 headers.setLocation(builder.path("/employee/{id}").buildAndExpand(employee.getEmployeeId()).toUri());
                 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
-	@PutMapping("update")
+	@PutMapping("/")
 	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
 		employeeService.updateEmployee(employee);
 		return new ResponseEntity<Employee>(employee, HttpStatus.OK);
 	}
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteEmployee(@PathVariable("id") Integer id) {
 		employeeService.deleteEmployee(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

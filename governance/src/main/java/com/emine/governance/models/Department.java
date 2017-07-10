@@ -23,61 +23,61 @@ public class Department implements Serializable{
 	@Id
 	@Column(name="department_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-    private Long department_id;
+    private Long departmentId;
 	
-	@Column(name="department_name", nullable=false)
-	private String department_name;
+	@Column(name="name", nullable=false)
+	private String departmentName;
 	
-	@Column(name="department_description")
-	private String department_description;
+	@Column(name="description")
+	private String departmentDescription;
 	
-	@OneToMany(/*cascade=CascadeType.ALL, */mappedBy = "departmentId", fetch = FetchType.EAGER)
+	@OneToMany(/*cascade=CascadeType.ALL, */mappedBy = "department_id", fetch = FetchType.EAGER)
     @Fetch(value = FetchMode.SELECT)    
 	private List<Employee> employees;
 	
 
 	public Department(){
-		department_id=null;
+		departmentId=null;
 	}
 	
 	public Department(long id, String name, String description){
-		this.department_id = id;
-		this.department_name = name;
-		this.department_description = description;
+		this.departmentId = id;
+		this.departmentName = name;
+		this.departmentDescription = description;
 	}
 
 	public long getDepartmentId() {
-		return department_id;
+		return departmentId;
 	}
 
 	public void setDepartmentId(long id) {
-		this.department_id = id;
+		this.departmentId = id;
 	}
 
 	public String getName() {
-		return department_name;
+		return departmentName;
 	}
 
 	public void setName(String name) {
-		this.department_name = name;
+		this.departmentName = name;
 	}
 	
 	public String getDescription() {
-		return department_description;
+		return departmentDescription;
 	}
 
 	public void setDescription(String description) {
-		this.department_description = description;
+		this.departmentDescription = description;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((department_description == null) ? 0 : department_description.hashCode());
+		result = prime * result + ((departmentDescription == null) ? 0 : departmentDescription.hashCode());
 		result = prime * result + ((employees == null) ? 0 : employees.hashCode());
-		result = prime * result + ((department_id == null) ? 0 : department_id.hashCode());
-		result = prime * result + ((department_name == null) ? 0 : department_name.hashCode());
+		result = prime * result + ((departmentId == null) ? 0 : departmentId.hashCode());
+		result = prime * result + ((departmentName == null) ? 0 : departmentName.hashCode());
 		return result;
 	}
 
@@ -90,25 +90,25 @@ public class Department implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Department other = (Department) obj;
-		if (department_description == null) {
-			if (other.department_description != null)
+		if (departmentDescription == null) {
+			if (other.departmentDescription != null)
 				return false;
-		} else if (!department_description.equals(other.department_description))
+		} else if (!departmentDescription.equals(other.departmentDescription))
 			return false;
 		if (employees == null) {
 			if (other.employees != null)
 				return false;
 		} else if (!employees.equals(other.employees))
 			return false;
-		if (department_id == null) {
-			if (other.department_id != null)
+		if (departmentId == null) {
+			if (other.departmentId != null)
 				return false;
-		} else if (!department_id.equals(other.department_id))
+		} else if (!departmentId.equals(other.departmentId))
 			return false;
-		if (department_name == null) {
-			if (other.department_name != null)
+		if (departmentName == null) {
+			if (other.departmentName != null)
 				return false;
-		} else if (!department_name.equals(other.department_name))
+		} else if (!departmentName.equals(other.departmentName))
 			return false;
 		return true;
 	}

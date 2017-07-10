@@ -26,11 +26,11 @@ Governance is an example RESTful application that uses React for client and Spri
 **RESTful API Address:** http://localhost:8080
 
 **Simple endpoints - Employee**
- * HTTP GET 	: "localhost:8080/employee/list" getting all employees.
- * HTTP GET 	: "localhost:8080/employee/list/{id}" get an employee by id.
- * HTTP POST	: "localhost:8080/employee/add" create a new employee.
- * HTTP PUT 	: "localhost:8080/employee/update/{id}" update an existing employee.
- * HTTP DELETE : "localhost:8080/employees/delete/{id}" delete an employee by id.
+ * HTTP GET 	: "localhost:8080/employee/" getting all employees.
+ * HTTP GET 	: "localhost:8080/employee/{id}" get an employee by id.
+ * HTTP POST	: "localhost:8080/employee/" create a new employee.
+ * HTTP PUT 	: "localhost:8080/employee/{id}" update an existing employee.
+ * HTTP DELETE : "localhost:8080/employees/{id}" delete an employee by id.
 
 
 **Maven Run Configurations**

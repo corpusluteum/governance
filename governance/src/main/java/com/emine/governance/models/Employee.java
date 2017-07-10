@@ -17,61 +17,61 @@ public class Employee implements Serializable{
 	@Id	
 	@Column(name="employee_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long employee_id;  
+    private Long employeeId;  
 	
 	@Column(name="employee_name")
-    private String employee_name;
+    private String employeeName;
 	
 	@Column(name="employee_surname")	
-	private String employee_surname;
+	private String employeesSurname;
 	
 	@Column(name="employee_salary")
-	private Double employee_salary;
+	private Double employeesSalary;
 
 	@Column(name="department_id")
 	private Integer departmentId;
 		
 	public Employee(){
-		employee_id=null;
+		employeeId=null;
 	}
 	
 	public Employee(Long id, String name, String surname, double salary){
-		this.employee_id = id;
-		this.employee_name = name;
-		this.employee_surname = surname;
-		this.employee_salary = salary;
+		this.employeeId = id;
+		this.employeeName = name;
+		this.employeesSurname = surname;
+		this.employeesSalary = salary;
 	}
 	
 	public long getEmployeeId() {
-		return employee_id;
+		return employeeId;
 	}
 
 	public void setEmployeeId(long l) {
-		this.employee_id = l;
+		this.employeeId = l;
 	}
 
 	public String getName() {
-		return employee_name;
+		return employeeName;
 	}
 
 	public void setName(String name) {
-		this.employee_name = name;
+		this.employeeName = name;
 	}
 	
 	public String getSurname() {
-		return employee_surname;
+		return employeesSurname;
 	}
 
 	public void setSurname(String surname) {
-		this.employee_surname = surname;
+		this.employeesSurname = surname;
 	}
 
 	public double getSalary() {
-		return employee_salary;
+		return employeesSalary;
 	}
 
 	public void setSalary(double salary) {
-		this.employee_salary = salary;
+		this.employeesSalary = salary;
 	}
 	
 	@Override
@@ -79,10 +79,10 @@ public class Employee implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((departmentId == null) ? 0 : departmentId.hashCode());
-		result = prime * result + ((employee_id == null) ? 0 : employee_id.hashCode());
-		result = prime * result + ((employee_name == null) ? 0 : employee_name.hashCode());
-		result = prime * result + ((employee_salary == null) ? 0 : employee_salary.hashCode());
-		result = prime * result + ((employee_surname == null) ? 0 : employee_surname.hashCode());
+		result = prime * result + ((employeeId == null) ? 0 : employeeId.hashCode());
+		result = prime * result + ((employeeName == null) ? 0 : employeeName.hashCode());
+		result = prime * result + ((employeesSalary == null) ? 0 : employeesSalary.hashCode());
+		result = prime * result + ((employeesSurname == null) ? 0 : employeesSurname.hashCode());
 		return result;
 	}
 
@@ -100,25 +100,25 @@ public class Employee implements Serializable{
 				return false;
 		} else if (!departmentId.equals(other.departmentId))
 			return false;
-		if (employee_id == null) {
-			if (other.employee_id != null)
+		if (employeeId == null) {
+			if (other.employeeId != null)
 				return false;
-		} else if (!employee_id.equals(other.employee_id))
+		} else if (!employeeId.equals(other.employeeId))
 			return false;
-		if (employee_name == null) {
-			if (other.employee_name != null)
+		if (employeeName == null) {
+			if (other.employeeName != null)
 				return false;
-		} else if (!employee_name.equals(other.employee_name))
+		} else if (!employeeName.equals(other.employeeName))
 			return false;
-		if (employee_salary == null) {
-			if (other.employee_salary != null)
+		if (employeesSalary == null) {
+			if (other.employeesSalary != null)
 				return false;
-		} else if (!employee_salary.equals(other.employee_salary))
+		} else if (!employeesSalary.equals(other.employeesSalary))
 			return false;
-		if (employee_surname == null) {
-			if (other.employee_surname != null)
+		if (employeesSurname == null) {
+			if (other.employeesSurname != null)
 				return false;
-		} else if (!employee_surname.equals(other.employee_surname))
+		} else if (!employeesSurname.equals(other.employeesSurname))
 			return false;
 		return true;
 	}

@@ -26,64 +26,64 @@ public class Meetings implements Serializable{
 	@Id	
 	@Column(name="meeting_id", unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)	
-    private Long meeting_id;
+    private Long meetingId;
 	
 	@NotEmpty
-	@Column(name="meeting_name")
-	private String meeting_name;
+	@Column(name="meetings_name")
+	private String meetingName;
 	
-	@Column(name="meeting_description")
-	private String meeting_description;
+	@Column(name="meetings_description")
+	private String meetingDescription;
 	
-	@Column(name="meeting_department")
-	private String meeting_department;
+	@Column(name="meetings_department")
+	private String meetingDepartment;
 	
 	 @ManyToMany(fetch = FetchType.EAGER)
-	 @JoinTable(name = "department_meetings", joinColumns = { @JoinColumn(name = "meeting_id") }, inverseJoinColumns = { @JoinColumn(name = "department_id") })
+	 @JoinTable(name = "meetings", joinColumns = { @JoinColumn(name = "meeting_id") }, inverseJoinColumns = { @JoinColumn(name = "department_id") })
 	 @Fetch (FetchMode.SELECT)
      private List<Department> departments;
 
 	public Meetings(){
-		meeting_id=null;
+		meetingId=null;
 	}
 	
 	public Meetings(long id, String name, String description, String department){
-		this.meeting_id = id;
-		this.meeting_name = name;
-		this.meeting_description = description;
-		this.meeting_department = department;
+		this.meetingId = id;
+		this.meetingName = name;
+		this.meetingDescription = description;
+		this.meetingDepartment = department;
 	}
 	
 	public long getMeetingsId() {
-		return meeting_id;
+		return meetingId;
 	}
 
 	public void setMeetingsId(long id) {
-		this.meeting_id = id;
+		this.meetingId = id;
 	}
 
 	public String getName() {
-		return meeting_name;
+		return meetingName;
 	}
 
 	public void setName(String name) {
-		this.meeting_name = name;
+		this.meetingName = name;
 	}
 
 	public String getDescription() {
-		return meeting_description;
+		return meetingDescription;
 	}
 
 	public void setDescription(String description) {
-		this.meeting_description = description;
+		this.meetingDescription = description;
 	}
 
 	public String getDepartment() {
-		return meeting_department;
+		return meetingDepartment;
 	}
 
 	public void setDepartment(String department) {
-		this.meeting_department = department;
+		this.meetingDepartment = department;
 	}
 	
 	@Override
@@ -91,9 +91,9 @@ public class Meetings implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((departments == null) ? 0 : departments.hashCode());
-		result = prime * result + ((meeting_description == null) ? 0 : meeting_description.hashCode());
-		result = prime * result + ((meeting_id == null) ? 0 : meeting_id.hashCode());
-		result = prime * result + ((meeting_name == null) ? 0 : meeting_name.hashCode());
+		result = prime * result + ((meetingDescription == null) ? 0 : meetingDescription.hashCode());
+		result = prime * result + ((meetingId == null) ? 0 : meetingId.hashCode());
+		result = prime * result + ((meetingName == null) ? 0 : meetingName.hashCode());
 		return result;
 	}
 
@@ -111,20 +111,20 @@ public class Meetings implements Serializable{
 				return false;
 		} else if (!departments.equals(other.departments))
 			return false;
-		if (meeting_description == null) {
-			if (other.meeting_description != null)
+		if (meetingDescription == null) {
+			if (other.meetingDescription != null)
 				return false;
-		} else if (!meeting_description.equals(other.meeting_description))
+		} else if (!meetingDescription.equals(other.meetingDescription))
 			return false;
-		if (meeting_id == null) {
-			if (other.meeting_id != null)
+		if (meetingId == null) {
+			if (other.meetingId != null)
 				return false;
-		} else if (!meeting_id.equals(other.meeting_id))
+		} else if (!meetingId.equals(other.meetingId))
 			return false;
-		if (meeting_name == null) {
-			if (other.meeting_name != null)
+		if (meetingName == null) {
+			if (other.meetingName != null)
 				return false;
-		} else if (!meeting_name.equals(other.meeting_name))
+		} else if (!meetingName.equals(other.meetingName))
 			return false;
 		return true;
 	}

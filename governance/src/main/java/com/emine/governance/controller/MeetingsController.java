@@ -32,17 +32,17 @@ public class MeetingsController {
         this.meetingsService = meetingsServices;
    }
 	
-	@GetMapping("list/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Meetings> getMeetingsById(@PathVariable("id") Integer id) {
 		Meetings meetings = meetingsService.getMeetingsById(id);
 		return new ResponseEntity<Meetings>(meetings, HttpStatus.OK);
 	}
-	@GetMapping("list")
+	@GetMapping("/")
 	public ResponseEntity<List<Meetings>> getAllmeetings() {
 		List<Meetings> list = meetingsService.getAllMeetings();
 		return new ResponseEntity<List<Meetings>>(list, HttpStatus.OK);
 	}
-	@PostMapping("add")
+	@PostMapping("/")
 	public ResponseEntity<Void> addMeetings(@RequestBody Meetings meetings, UriComponentsBuilder builder) {
                 boolean flag = meetingsService.addMeetings(meetings);
                 if (flag == false) {
@@ -52,12 +52,12 @@ public class MeetingsController {
                 headers.setLocation(builder.path("/meetings/{id}").buildAndExpand(meetings.getMeetingsId()).toUri());
                 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
-	@PutMapping("update")
+	@PutMapping("/")
 	public ResponseEntity<Meetings> updateMeetings(@RequestBody Meetings meetings) {
 		meetingsService.updateMeetings(meetings);
 		return new ResponseEntity<Meetings>(meetings, HttpStatus.OK);
 	}
-	@DeleteMapping("delete/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> deleteMeetings(@PathVariable("id") Integer id) {
 		meetingsService.deleteMeetings(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
