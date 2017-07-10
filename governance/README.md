@@ -40,7 +40,7 @@ Governance is an example RESTful application that uses React for client and Spri
 
 ## Client Application
 
-This project template was built with [Create React App](https://github.com/facebookincubator/create-react-app). (**requires Node**)
+This project template was built with [Create React App](https://github.com/facebookincubator/create-react-app). 
 
 **Techs:** React, react-bootstrap, axios for http requests, and several react components.
 
