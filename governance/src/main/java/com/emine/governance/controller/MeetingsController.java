@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 
 
 import com.emine.governance.models.Meetings;
+import com.emine.governance.service.DepartmentServices;
 import com.emine.governance.service.MeetingsServices;
 
 @Controller
@@ -26,17 +27,22 @@ public class MeetingsController {
 	
 	@Autowired
 	private MeetingsServices meetingsService;
-	@GetMapping("meetings/{id}")
+	
+	MeetingsController(MeetingsServices meetingsServices) {
+        this.meetingsService = meetingsServices;
+   }
+	
+	@GetMapping("list/{id}")
 	public ResponseEntity<Meetings> getMeetingsById(@PathVariable("id") Integer id) {
 		Meetings meetings = meetingsService.getMeetingsById(id);
 		return new ResponseEntity<Meetings>(meetings, HttpStatus.OK);
 	}
-	@GetMapping("meetings")
+	@GetMapping("list")
 	public ResponseEntity<List<Meetings>> getAllmeetings() {
 		List<Meetings> list = meetingsService.getAllMeetings();
 		return new ResponseEntity<List<Meetings>>(list, HttpStatus.OK);
 	}
-	@PostMapping("meetings")
+	@PostMapping("add")
 	public ResponseEntity<Void> addMeetings(@RequestBody Meetings meetings, UriComponentsBuilder builder) {
                 boolean flag = meetingsService.addMeetings(meetings);
                 if (flag == false) {
@@ -46,12 +52,12 @@ public class MeetingsController {
                 headers.setLocation(builder.path("/meetings/{id}").buildAndExpand(meetings.getMeetingsId()).toUri());
                 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
-	@PutMapping("meetings")
+	@PutMapping("update")
 	public ResponseEntity<Meetings> updateMeetings(@RequestBody Meetings meetings) {
 		meetingsService.updateMeetings(meetings);
 		return new ResponseEntity<Meetings>(meetings, HttpStatus.OK);
 	}
-	@DeleteMapping("meetings/{id}")
+	@DeleteMapping("delete/{id}")
 	public ResponseEntity<Void> deleteMeetings(@PathVariable("id") Integer id) {
 		meetingsService.deleteMeetings(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);

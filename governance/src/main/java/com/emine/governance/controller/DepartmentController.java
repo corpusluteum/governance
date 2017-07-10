@@ -13,30 +13,36 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.stereotype.Controller;
 
 import com.emine.governance.models.Department;
 import com.emine.governance.service.DepartmentServices;
+import com.emine.governance.service.EmployeeServices;
 
 
-@Controller
+@RestController
 @RequestMapping("department")
 public class DepartmentController {
 	
 	@Autowired
 	private DepartmentServices departmentService;
-	@GetMapping("department/{id}")
+	
+	DepartmentController(DepartmentServices departmentServices) {
+         this.departmentService = departmentServices;
+    }
+	
+	@GetMapping("list/{id}")
 	public ResponseEntity<Department> getDepartmentById(@PathVariable("id") Integer id) {
 		Department department = departmentService.getDepartmentById(id);
 		return new ResponseEntity<Department>(department, HttpStatus.OK);
 	}
-	@GetMapping("departments")
+	@GetMapping("list")
 	public ResponseEntity<List<Department>> getAllDepartments() {
 		List<Department> list = departmentService.getAllDepartment();
 		return new ResponseEntity<List<Department>>(list, HttpStatus.OK);
 	}
-	@PostMapping("department")
+	@PostMapping("add")
 	public ResponseEntity<Void> addDepartment(@RequestBody Department department, UriComponentsBuilder builder) {
                 boolean flag = departmentService.addDepartment(department);
                 if (flag == false) {
@@ -46,12 +52,12 @@ public class DepartmentController {
                 headers.setLocation(builder.path("/department/{id}").buildAndExpand(department.getDepartmentId()).toUri());
                 return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
-	@PutMapping("department")
+	@PutMapping("update")
 	public ResponseEntity<Department> updateDepartment(@RequestBody Department department) {
 		departmentService.updateDepartment(department);
 		return new ResponseEntity<Department>(department, HttpStatus.OK);
 	}
-	@DeleteMapping("department/{id}")
+	@DeleteMapping("delete/{id}")
 	public ResponseEntity<Void> deleteDepartment(@PathVariable("id") Integer id) {
 		departmentService.deleteDepartment(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
