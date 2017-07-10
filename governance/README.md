@@ -37,6 +37,8 @@ Governance is an example RESTful application that uses React for client and Spri
 
 `clean spring-boot:run`: clean and run Spring Boot application
 
+`clean test`: clean and run tests
+
 
 ## Client Application
 
