@@ -9,7 +9,7 @@ Governance is an example RESTful application that uses React for client and Spri
 
 **Governance ER Diagram:**
 
-![Governance ER](/files/databaseShcema.png?raw=true "Governance ER")
+![Governance ER](files/databaseShcema.png "Governance ER")
 
 **TODO:**
 
